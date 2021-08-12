@@ -25,9 +25,11 @@
 	</properties>
 
 	<modules>
+		<module>swastya-core</module>
 		<module>discovery-service</module>
 		<module>config-service</module>
 		<module>gateway-service</module>
+		<module>auth-service</module>
 		<module>user-service</module>
 	</modules>
 </project>

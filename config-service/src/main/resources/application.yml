@@ -14,7 +14,7 @@ spring:
 
 # Port address
 server:
-  port: 8082
+  port: 8088
 
 # Register with Eureka discovery service
 eureka:
@@ -22,7 +22,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8080/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8061/eureka/
 
 # Use asymmetric key (RSA key pair) encryption for properties      
 encrypt:

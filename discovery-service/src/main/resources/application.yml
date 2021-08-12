@@ -5,7 +5,7 @@ spring:
 
 # Port address
 server:
-  port: 8080
+  port: 8061
 
 # Eureka discovery service setup
 eureka:
