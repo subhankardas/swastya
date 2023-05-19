@@ -1,1 +1,0 @@
-C:\Program Files\Java\jdk1.8.0_221\bin>keytool -genkeypair -alias swastyakey -keyalg RSA -dname "CN=Config Server,OU=Unit,O=CodeSpark,L=Durgapur,S=WB,C=IN" -keypass swastyasecret -keystore encryptionkey.jks -storepass swastyapass

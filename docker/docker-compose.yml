@@ -1,21 +1,73 @@
-version: '3'
+version: '3.7'
+
 services:
-  mysql:
-    image: mysql:latest
-    container_name: mysql
-    ports:
-    - 3307:3306
+
+  # consul node 1
+  consul-server1:
+    image: hashicorp/consul
+    container_name: consul-server1
     restart: always
-    environment:
-      MYSQL_DATABASE: swastya
-      MYSQL_USER: swastyadbuser
-      MYSQL_PASSWORD: swastyadbuser@123
-      MYSQL_ROOT_PASSWORD: admin@123
     volumes:
-    - mysql_data:/var/lib/mysql
+      - ./consul/config/server1.json:/consul/config/server1.json:ro
+      - ./consul/config/certs/:/consul/config/certs/:ro
+      - consul_server1_data:/consul/data
+      - consul_server1_data:/consul/config
     networks:
-    - backend
+      - consul-net
+    ports:
+      - "8500:8500"
+      - "8600:8600/tcp"
+      - "8600:8600/udp"
+    command: "agent -bootstrap-expect=3"
+
+  # consul node 2
+  consul-server2:
+    image: hashicorp/consul
+    container_name: consul-server2
+    restart: always
+    volumes:
+      - ./consul/config/server2.json:/consul/config/server2.json:ro
+      - ./consul/config/certs/:/consul/config/certs/:ro
+      - consul_server2_data:/consul/data
+      - consul_server2_data:/consul/config
+    networks:
+      - consul-net
+    command: "agent -bootstrap-expect=3"
+
+  # consul node 3
+  consul-server3:
+    image: hashicorp/consul
+    container_name: consul-server3
+    restart: always
+    volumes:
+      - ./consul/config/server3.json:/consul/config/server3.json:ro
+      - ./consul/config/certs/:/consul/config/certs/:ro
+      - consul_server3_data:/consul/data
+      - consul_server3_data:/consul/config
+    networks:
+      - consul-net
+    command: "agent -bootstrap-expect=3"
+
+  # consul client
+  consul-client:
+    image: hashicorp/consul
+    container_name: consul-client
+    restart: always
+    volumes:
+      - ./consul/config/client.json:/consul/config/client.json:ro
+      - ./consul/config/certs/:/consul/config/certs/:ro
+      - consul_client_data:/consul/data
+      - consul_client_data:/consul/config
+    networks:
+      - consul-net
+    command: "agent"
+
 volumes:
-  mysql_data: null
+  consul_server1_data: null
+  consul_server2_data: null
+  consul_server3_data: null
+  consul_client_data: null
+
 networks:
-  backend: null
+  consul-net:
+    driver: bridge
