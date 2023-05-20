@@ -3,6 +3,6 @@
  _\ \| |/|/ / _ `(_-</ __/ // / _ `/ / /_/ (_-</ -_) __/ _\ \/ -_) __/ |/ / / __/ -_)
 /___/|__,__/\_,_/___/\__/\_, /\_,_/  \____/___/\__/_/   /___/\__/_/  |___/_/\__/\__/ 
                         /___/                                                        
-                                                                            v${spring.application.version}
-
-===   Spring Boot v${spring-boot.version}   === ${spring.application.description}
+ 
+ :: User Service ::                 (v${spring.application.version})
+ :: Spring Boot  ::                 (v${spring-boot.version})

@@ -18,10 +18,10 @@
 	<description>${application.description}</description>
 
 	<properties>
-		<application.name>user-service</application.name>
+		<application.name>gateway-service</application.name>
 		<application.version>0.0.1-SNAPSHOT</application.version>
 		<application.description>
-			Service to handle user related functionalities.
+			API gateway service.
 		</application.description>
 
 		<java.version>17</java.version>
@@ -30,8 +30,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

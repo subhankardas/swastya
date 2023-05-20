@@ -1,10 +1,10 @@
 server:
-  port: 8080
+  port: 80
 
 spring:
   application: # service details
-    name: @application.name@
-    version: @application.version@ # value from pom.xml
+      name: @application.name@
+      version: @application.version@ # value from pom.xml
 
   cloud:
     consul: # consul configs
@@ -17,6 +17,15 @@ spring:
         health-check-interval: 15s
         health-check-timeout: 90s
         health-check-critical-timeout: 3m
+    
+    gateway: # api gateway routes config
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/users/**, /api/v2/users/**
+          filters:
+            - StripPrefix=1 
 
 management:
   endpoints: # actuator configs

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
 @EnableDiscoveryClient
 public class UserServiceApplication {
 
@@ -15,9 +14,19 @@ public class UserServiceApplication {
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
-	@GetMapping("/")
-	public String home() {
-		return "Hello World!";
+}
+
+@RestController
+class UserController {
+
+	@GetMapping("/v1/users")
+	public String usersV1() {
+		return "users v1";
+	}
+
+	@GetMapping("/v2/users")
+	public String usersV2() {
+		return "users v2";
 	}
 
 }
