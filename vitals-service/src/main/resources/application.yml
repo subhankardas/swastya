@@ -1,0 +1,28 @@
+# Service details
+server:
+  port: 9001
+
+spring:
+  application:
+    name: vitals-service
+    version: 0.0.1-SNAPSHOT
+
+  # Service discovery configs
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}-${server.port}-${spring.cloud.client.ip-address}
+        prefer-ip-address: true
+        health-check-path: ${server.servlet.context-path:}/actuator/health
+        health-check-interval: 15s
+        health-check-timeout: 90s
+        health-check-critical-timeout: 3m
+
+# Enable actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

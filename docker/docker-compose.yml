@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+  # Service discovery
+  consul-node1:
+    image: bitnami/consul
+    container_name: consul-node1
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=1
+      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
+      - CONSUL_DISABLE_KEYRING_FILE=true
+      - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
+      - CONSUL_DATACENTER=swastya-dc
+    ports:
+      - "8300:8300"
+      - "8301:8301"
+      - "8301:8301/udp"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+    volumes:
+      - "consul_data1:/bitnami"
+    networks:
+      - app_network
+
+  # Users database
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=myp@ss
+      - POSTGRES_USER=swastya
+      - POSTGRES_DB=user_db
+    restart: unless-stopped
+    networks:
+      - app_network
+
+volumes:
+  consul_data1: null
+  postgres_data: null
+  pgadmin_data: null
+
+networks:
+  app_network:
+    driver: bridge

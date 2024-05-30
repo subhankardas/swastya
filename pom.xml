@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent> <!-- Spring Boot Parent -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.0</version>
+        <relativePath />
+    </parent>
+
+    <groupId>com.codespark</groupId>
+    <artifactId>swastya</artifactId>
+    <version>${swastya.version}</version>
+    <name>swastya-microservices</name>
+    <description>Microservices architecture-based implementation for public health monitoring.</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>17</java.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <swastya.version>0.0.1-SNAPSHOT</swastya.version>
+    </properties>
+
+    <modules>
+        <module>swastya-core</module>
+        <module>gateway-service</module>
+        <module>auth-service</module>
+        <module>vitals-service</module>
+    </modules>
+
+</project>
