@@ -21,6 +21,7 @@
 
 	<properties>
 		<swastya.vitals.version>0.0.1-SNAPSHOT</swastya.vitals.version>
+		<swastya.core.version>0.0.2-SNAPSHOT</swastya.core.version>
 	</properties>
 
 	<dependencies>
@@ -48,6 +49,33 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
+		</dependency>
+
+		<!-- Library which helps to reduce boilerplate code -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Library to map DTOs to entities -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+
+		<!-- Kafka messaging streaming -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+
+		<!-- Common module for shared resources -->
+		<dependency>
+			<groupId>com.codespark</groupId>
+			<artifactId>swastya-core</artifactId>
+			<version>${swastya.core.version}</version>
 		</dependency>
 
 		<dependency>

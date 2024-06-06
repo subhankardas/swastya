@@ -1,4 +1,4 @@
-package com.codespark.dto;
+package com.codespark.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class UserSignupDetails {
+public class UserSignupRequest {
 
     @NotNull(message = "Name cannot be empty.")
     @Size(min = 3, max = 30, message = "Name should be within 3 to 30 characters.")

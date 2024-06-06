@@ -6,7 +6,7 @@ import com.codespark.auth.models.User;
 
 import reactor.core.publisher.Mono;
 
-public interface UserRepository extends R2dbcRepository<User, Integer> {
+public interface UserRepository extends R2dbcRepository<User, Long> {
 
     Mono<User> findByEmail(String email);
 

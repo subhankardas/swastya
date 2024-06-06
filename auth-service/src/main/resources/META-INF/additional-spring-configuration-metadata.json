@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "events.topics",
+      "type": "java.util.List",
+      "description": "List of event topics supported by the service."
+    }
+  ]
+}
