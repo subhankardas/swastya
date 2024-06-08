@@ -3,6 +3,9 @@ package com.codespark.dto.user;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.codespark.constants.ActivityLevel;
+import com.codespark.constants.Gender;
+
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -25,6 +28,8 @@ public class UserProfileUpdateRequest implements Serializable {
     @Positive(message = "Weight should be a positive value.")
     private Float weight;
 
+    private ActivityLevel activity;
+    private Gender gender;
     private Long userId;
 
 }

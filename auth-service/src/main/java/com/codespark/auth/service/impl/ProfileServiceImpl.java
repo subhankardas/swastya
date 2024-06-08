@@ -9,6 +9,8 @@ import com.codespark.auth.models.Profile;
 import com.codespark.auth.models.User;
 import com.codespark.auth.service.EventService;
 import com.codespark.auth.service.ProfileService;
+import com.codespark.constants.ActivityLevel;
+import com.codespark.constants.Gender;
 import com.codespark.dto.simple.ResponseCode;
 import com.codespark.dto.user.UserProfileUpdateRequest;
 import com.codespark.dto.user.UserSimpleResponse;
@@ -89,7 +91,11 @@ public class ProfileServiceImpl implements ProfileService {
 
     /** Publish user profile update event. */
     private Profile publishUserProfileUpdate(Long userId, Profile profile) {
+        // Set profile update event data
         UserProfileUpdateRequest data = mapper.map(profile, UserProfileUpdateRequest.class);
+        data.setActivity(ActivityLevel.fromActivity(profile.getActivity()));
+        data.setGender(Gender.fromGender(profile.getGender()));
+
         eventService.publish("profile.update", Long.toString(userId), data);
         return profile;
     }
@@ -97,13 +103,14 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public Mono<UserProfileUpdateRequest> getUserProfile(Long userId) {
         return profileRepository.findByUserId(userId)
-                .map(profile -> UserProfileUpdateRequest
-                        .builder()
-                        .dateOfBirth(profile.getDateOfBirth())
-                        .height(profile.getHeight())
-                        .weight(profile.getWeight())
-                        .userId(userId)
-                        .build())
+                .map(profile -> {
+                    // Map profile data
+                    UserProfileUpdateRequest dto = mapper.map(profile, UserProfileUpdateRequest.class);
+                    dto.setActivity(ActivityLevel.fromActivity(profile.getActivity()));
+                    dto.setGender(Gender.fromGender(profile.getGender()));
+
+                    return dto;
+                })
                 .switchIfEmpty(Mono.defer(() -> {
                     // User not found, throw exception
                     log.error("Profile not found for user ID: {}", userId);

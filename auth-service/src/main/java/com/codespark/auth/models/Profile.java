@@ -22,6 +22,8 @@ public class Profile {
     private LocalDate dateOfBirth;
     private Float height;
     private Float weight;
+    private Integer activity;
+    private Integer gender;
 
     private Long userId;
 

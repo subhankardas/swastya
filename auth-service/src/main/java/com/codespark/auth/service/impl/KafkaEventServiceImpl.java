@@ -1,6 +1,5 @@
 package com.codespark.auth.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -15,15 +14,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class KafkaEventServiceImpl implements EventService {
 
-    @Autowired
-    private KafkaTemplate<Object, Object> kafkaTemplate;
+    private final KafkaTemplate<Object, Object> kafkaTemplate;
 
     @Async
     @Override
     public <K, V> void publish(String topic, K key, V message) {
         kafkaTemplate.send(topic, key, message).whenComplete((result, ex) -> {
             if (ex != null) {
-                log.error("Failed to publish event: {} to topic: {} with exception: {}", message, topic, ex);
+                log.error("Failed to publish event: {} to topic: {}", message, topic, ex);
                 throw new RuntimeException(ex);
             }
             log.debug("Event with key: {} sent to topic: {}", key, topic);
