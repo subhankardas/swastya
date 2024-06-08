@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  # Vitals service database
+  vitals_db:
+    image: mongo
+    container_name: vitals_db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${VITALS_DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${VITALS_DB_PASSWORD}
+      MONGO_INITDB_DATABASE: vitals_db
+    volumes:
+      - mongo_vitals_data:/data/db
+      - mongo_vitals_data:/data/configdb
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+    networks:
+      - app_network
+
+volumes:
+  mongo_vitals_data: null
+
+networks:
+  app_network:
+    driver: bridge

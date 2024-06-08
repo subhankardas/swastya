@@ -10,7 +10,7 @@ services:
       - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
       - CONSUL_DISABLE_KEYRING_FILE=true
       - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
-      - CONSUL_DATACENTER=swastya-dc
+      - CONSUL_DATACENTER=${DATACENTER_NAME}
     ports:
       - "8300:8300"
       - "8301:8301"
@@ -23,27 +23,9 @@ services:
     networks:
       - app_network
 
-  # Users database
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    expose:
-      - 5432
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=myp@ss
-      - POSTGRES_USER=swastya
-      - POSTGRES_DB=user_db
-    restart: unless-stopped
-    networks:
-      - app_network
-
   # Messaging queue
   kafka:
-    image: bitnami/kafka:3.7
+    image: bitnami/kafka:${KAFKA_VERSION}
     container_name: kafka
     ports:
       - "9092:9092"
@@ -64,7 +46,7 @@ services:
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
       - BITNAMI_DEBUG=yes
       - KAFKA_CFG_NUM_PARTITIONS=2
-      - KAFKA_KRAFT_CLUSTER_ID=swastya-dc
+      - KAFKA_KRAFT_CLUSTER_ID=${DATACENTER_NAME}
     networks:
       - app_network
 
@@ -76,16 +58,15 @@ services:
       - "8080:8080"
     restart: "always"
     environment:
-      - KAFKA_CLUSTERS_0_NAME=swastya-dc
+      - KAFKA_CLUSTERS_0_NAME=${DATACENTER_NAME}
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9094
     depends_on:
       - kafka
     networks:
-          - app_network
-          
+      - app_network
+
 volumes:
   consul_data1: null
-  postgres_data: null
   kafka_data: null
 
 networks:

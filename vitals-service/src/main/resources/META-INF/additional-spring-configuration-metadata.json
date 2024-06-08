@@ -4,11 +4,6 @@
       "name": "spring.application.version",
       "type": "java.lang.String",
       "description": "Application version for logging."
-    },
-    {
-      "name": "events.topics",
-      "type": "java.util.List",
-      "description": "List of event topics supported by the service."
     }
   ]
 }

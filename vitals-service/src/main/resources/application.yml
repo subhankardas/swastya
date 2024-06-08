@@ -19,7 +19,12 @@ spring:
         health-check-interval: 15s
         health-check-timeout: 90s
         health-check-critical-timeout: 3m
-  
+
+  # Database configs
+  data:
+    mongodb:
+      uri: mongodb://swastya:vitalsdbpassword@localhost:27017/vitals_db?authSource=admin
+
   # Kafka configs
   kafka:
     bootstrap-servers:

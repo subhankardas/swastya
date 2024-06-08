@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  # Auth service database
+  auth_db:
+    image: postgres
+    container_name: auth_db
+    volumes:
+      - postgres_auth_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${AUTH_DB_USERNAME}
+      - POSTGRES_PASSWORD=${AUTH_DB_PASSWORD}
+      - POSTGRES_DB=auth_db
+    restart: unless-stopped
+    networks:
+      - app_network
+
+volumes:
+  postgres_auth_data: null
+
+networks:
+  app_network:
+    driver: bridge

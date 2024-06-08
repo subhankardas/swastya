@@ -22,15 +22,15 @@ spring:
 
   # Database configs
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/user_db
+    url: r2dbc:postgresql://localhost:5432/auth_db
     username: swastya
-    password: myp@ss
+    password: authdbpassword
 
   # Database migration configs
   flyway:
-    url: jdbc:postgresql://localhost:5432/user_db
+    url: jdbc:postgresql://localhost:5432/auth_db
     user: swastya
-    password: myp@ss
+    password: authdbpassword
 
   # Kafka configs
   kafka:
