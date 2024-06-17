@@ -1,7 +1,7 @@
 package com.codespark.vitals.service;
 
-import com.codespark.dto.user.UserProfileUpdateRequest;
-import com.codespark.vitals.models.UserVitals;
+import com.codespark.core.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.dto.vitals.UserVitalsResponse;
 
 import reactor.core.publisher.Mono;
 
@@ -9,6 +9,6 @@ public interface UserVitalsService {
 
     void updateUserVitals(UserProfileUpdateRequest updatedProfile);
 
-    Mono<UserVitals> getUserVitals(Long userId);
+    Mono<UserVitalsResponse> getUserVitals(Long userId);
 
 }

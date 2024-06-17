@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.support.WebExchangeBindException;
 
-import com.codespark.dto.common.ValidationErrorResponse;
+import com.codespark.core.dto.common.ValidationErrorResponse;
 
 import reactor.core.publisher.Mono;
 

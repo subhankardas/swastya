@@ -1,4 +1,4 @@
-package com.codespark.dto.simple;
+package com.codespark.core.dto.simple;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -3,7 +3,7 @@ package com.codespark.vitals.configs;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import com.codespark.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.dto.user.UserProfileUpdateRequest;
 import com.codespark.vitals.service.UserVitalsService;
 
 import lombok.RequiredArgsConstructor;

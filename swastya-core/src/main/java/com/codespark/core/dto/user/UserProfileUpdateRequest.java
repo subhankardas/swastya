@@ -1,10 +1,10 @@
-package com.codespark.dto.user;
+package com.codespark.core.dto.user;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import com.codespark.constants.ActivityLevel;
-import com.codespark.constants.Gender;
+import com.codespark.core.constants.ActivityLevel;
+import com.codespark.core.constants.Gender;
 
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;

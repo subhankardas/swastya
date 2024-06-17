@@ -2,20 +2,19 @@ package com.codespark.vitals.models;
 
 import org.springframework.data.annotation.Transient;
 
-import com.codespark.dto.user.UserProfileUpdateRequest;
-import com.codespark.utils.DateUtils;
+import com.codespark.core.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.utils.DateUtils;
 import com.codespark.vitals.utils.BasicVitalsCalculator;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class BasicVitals {
 
     @Transient
     public static final BasicVitalsCalculator basicVitalsCalculator = new BasicVitalsCalculator();
-    @Transient
-    private final UserProfileUpdateRequest profile;
 
     // Basic vitals
     private float bmi;
@@ -25,9 +24,7 @@ public class BasicVitals {
     private float lbm;
     private float ibw;
 
-    @Builder
-    public BasicVitals(UserProfileUpdateRequest profile) {
-        this.profile = profile;
+    public void updateBasicVitals(UserProfileUpdateRequest profile) {
         int age = DateUtils.getAge(profile.getDateOfBirth());
 
         // Calculate basic vitals

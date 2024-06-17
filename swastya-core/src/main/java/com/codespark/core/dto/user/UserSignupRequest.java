@@ -1,4 +1,4 @@
-package com.codespark.dto.user;
+package com.codespark.core.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

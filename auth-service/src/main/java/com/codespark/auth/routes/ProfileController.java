@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codespark.auth.service.ProfileService;
-import com.codespark.dto.simple.ResponseCode;
-import com.codespark.dto.user.UserProfileUpdateRequest;
-import com.codespark.dto.user.UserSimpleResponse;
+import com.codespark.core.dto.simple.ResponseCode;
+import com.codespark.core.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.dto.user.UserSimpleResponse;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.codespark.constants;
+package com.codespark.core.constants;
 
 public enum Gender {
 

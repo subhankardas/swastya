@@ -1,7 +1,7 @@
 package com.codespark.auth.service;
 
-import com.codespark.dto.user.UserProfileUpdateRequest;
-import com.codespark.dto.user.UserSimpleResponse;
+import com.codespark.core.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.dto.user.UserSimpleResponse;
 
 import reactor.core.publisher.Mono;
 

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import com.codespark.auth.data.UserRepository;
 import com.codespark.auth.models.User;
 import com.codespark.auth.service.SignupService;
-import com.codespark.dto.simple.ResponseCode;
-import com.codespark.dto.user.UserSignupRequest;
-import com.codespark.dto.user.UserSimpleResponse;
-import com.codespark.exception.user.UserAlreadyExistsException;
+import com.codespark.core.dto.simple.ResponseCode;
+import com.codespark.core.dto.user.UserSignupRequest;
+import com.codespark.core.dto.user.UserSimpleResponse;
+import com.codespark.core.exception.user.UserAlreadyExistsException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

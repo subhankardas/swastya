@@ -5,12 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.codespark.dto.simple.ResponseCode;
-import com.codespark.dto.simple.SimpleResponse;
-import com.codespark.dto.user.UserSimpleResponse;
-import com.codespark.exception.user.UserAlreadyExistsException;
-import com.codespark.exception.user.UserNotFoundException;
-import com.codespark.exception.user.UserProfileNotFoundException;
+import com.codespark.core.dto.simple.ResponseCode;
+import com.codespark.core.dto.simple.SimpleResponse;
+import com.codespark.core.dto.user.UserSimpleResponse;
+import com.codespark.core.exception.user.UserAlreadyExistsException;
+import com.codespark.core.exception.user.UserNotFoundException;
+import com.codespark.core.exception.user.UserProfileNotFoundException;
 
 import reactor.core.publisher.Mono;
 

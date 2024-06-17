@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.codespark.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.dto.user.UserProfileUpdateRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +26,10 @@ public class UserVitals {
     @Builder
     public UserVitals(UserProfileUpdateRequest profile) {
         this.userId = profile.getUserId();
-        this.basicVitals = BasicVitals.builder().profile(profile).build();
+        this.basicVitals = BasicVitals.builder().build();
+
+        // Update basic vitals with updated profile
+        this.basicVitals.updateBasicVitals(profile);
     }
 
 }

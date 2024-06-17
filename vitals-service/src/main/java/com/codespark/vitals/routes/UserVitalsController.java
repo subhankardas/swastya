@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codespark.vitals.models.UserVitals;
+import com.codespark.core.dto.vitals.UserVitalsResponse;
 import com.codespark.vitals.service.UserVitalsService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class UserVitalsController {
     private final UserVitalsService userVitalsService;
 
     @GetMapping
-    public Mono<UserVitals> getUserVitals(@PathVariable Long userId) {
+    public Mono<UserVitalsResponse> getUserVitals(@PathVariable Long userId) {
         return userVitalsService.getUserVitals(userId);
     }
 

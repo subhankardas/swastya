@@ -1,4 +1,4 @@
-package com.codespark.utils;
+package com.codespark.core.utils;
 
 import java.time.LocalDate;
 import java.time.Period;

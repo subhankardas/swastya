@@ -1,7 +1,7 @@
-package com.codespark.dto.user;
+package com.codespark.core.dto.user;
 
-import com.codespark.dto.simple.ResponseCode;
-import com.codespark.dto.simple.SimpleResponse;
+import com.codespark.core.dto.simple.ResponseCode;
+import com.codespark.core.dto.simple.SimpleResponse;
 
 import lombok.Builder;
 import lombok.Data;

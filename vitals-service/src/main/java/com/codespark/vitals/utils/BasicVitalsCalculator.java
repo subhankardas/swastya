@@ -2,8 +2,8 @@ package com.codespark.vitals.utils;
 
 import org.springframework.stereotype.Component;
 
-import com.codespark.constants.ActivityLevel;
-import com.codespark.constants.Gender;
+import com.codespark.core.constants.ActivityLevel;
+import com.codespark.core.constants.Gender;
 
 @Component
 public class BasicVitalsCalculator {

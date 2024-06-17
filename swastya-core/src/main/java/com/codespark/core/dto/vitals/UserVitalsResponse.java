@@ -1,4 +1,4 @@
-package com.codespark.dto.vitals;
+package com.codespark.core.dto.vitals;
 
 import lombok.Data;
 

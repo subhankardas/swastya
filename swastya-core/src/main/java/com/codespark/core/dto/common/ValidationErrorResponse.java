@@ -1,9 +1,9 @@
-package com.codespark.dto.common;
+package com.codespark.core.dto.common;
 
 import java.util.Map;
 
-import com.codespark.dto.simple.ResponseCode;
-import com.codespark.dto.simple.SimpleResponse;
+import com.codespark.core.dto.simple.ResponseCode;
+import com.codespark.core.dto.simple.SimpleResponse;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

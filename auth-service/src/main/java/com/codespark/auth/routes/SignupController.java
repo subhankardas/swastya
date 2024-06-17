@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codespark.auth.service.SignupService;
-import com.codespark.dto.user.UserSignupRequest;
-import com.codespark.dto.user.UserSimpleResponse;
+import com.codespark.core.dto.user.UserSignupRequest;
+import com.codespark.core.dto.user.UserSimpleResponse;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

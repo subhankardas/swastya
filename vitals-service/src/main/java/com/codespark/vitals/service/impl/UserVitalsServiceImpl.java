@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.codespark.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.dto.user.UserProfileUpdateRequest;
+import com.codespark.core.dto.vitals.UserVitalsResponse;
+import com.codespark.core.exception.user.UserVitalsNotFoundException;
 import com.codespark.vitals.data.UserVitalsRepository;
 import com.codespark.vitals.models.UserVitals;
 import com.codespark.vitals.service.UserVitalsService;
@@ -35,8 +37,14 @@ public class UserVitalsServiceImpl implements UserVitalsService {
     }
 
     @Override
-    public Mono<UserVitals> getUserVitals(Long userId) {
-        return userVitalsRepository.findById(userId);
+    public Mono<UserVitalsResponse> getUserVitals(Long userId) {
+        return userVitalsRepository.findById(userId)
+                .map(userVitals -> mapper.map(userVitals, UserVitalsResponse.class))
+                .switchIfEmpty(Mono.defer(() -> {
+                    // User vitals not found, throw exception
+                    log.error("Vitals not found for user ID: {}", userId);
+                    return Mono.error(new UserVitalsNotFoundException());
+                }));
     }
 
 }
