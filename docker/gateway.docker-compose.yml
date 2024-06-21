@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  # Gateway service
+  gateway-service:
+    build:
+      context: ../gateway-service
+    container_name: gateway-service
+    image: gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

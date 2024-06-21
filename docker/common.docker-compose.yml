@@ -2,14 +2,14 @@ version: "3.7"
 
 services:
   # Service discovery
-  consul-node1:
+  consul:
     image: bitnami/consul
-    container_name: consul-node1
+    container_name: consul
     environment:
       - CONSUL_BOOTSTRAP_EXPECT=1
       - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
       - CONSUL_DISABLE_KEYRING_FILE=true
-      - CONSUL_RETRY_JOIN_ADDRESS=consul-node1
+      - CONSUL_RETRY_JOIN_ADDRESS=consul
       - CONSUL_DATACENTER=${DATACENTER_NAME}
     ports:
       - "8300:8300"
@@ -19,7 +19,7 @@ services:
       - "8600:8600"
       - "8600:8600/udp"
     volumes:
-      - "consul_data1:/bitnami"
+      - "consul_data:/bitnami"
     networks:
       - app_network
 
@@ -55,7 +55,7 @@ services:
     image: provectuslabs/kafka-ui
     container_name: kafka-ui
     ports:
-      - "8080:8080"
+      - "8000:8080"
     restart: "always"
     environment:
       - KAFKA_CLUSTERS_0_NAME=${DATACENTER_NAME}
@@ -66,7 +66,7 @@ services:
       - app_network
 
 volumes:
-  consul_data1: null
+  consul_data: null
   kafka_data: null
 
 networks:

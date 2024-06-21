@@ -1,16 +1,16 @@
 # Service details
 server:
-  port: 9001
+  port: 9000
 
 spring:
   application:
-    name: vitals-service
+    name: auth-service
     version: 0.0.1-SNAPSHOT
 
   # Service discovery configs
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         instance-id: ${spring.application.name}-${server.port}
@@ -21,14 +21,21 @@ spring:
         health-check-critical-timeout: 3m
 
   # Database configs
-  data:
-    mongodb:
-      uri: mongodb://swastya:vitalsdbpassword@localhost:27017/vitals_db?authSource=admin
+  r2dbc:
+    url: r2dbc:pool:postgresql://auth_db/auth_db
+    username: swastya
+    password: authdbpassword
+
+  # Database migration configs
+  flyway:
+    url: jdbc:postgresql://auth_db:5432/auth_db
+    user: swastya
+    password: authdbpassword
 
   # Kafka configs
   kafka:
     bootstrap-servers:
-      - localhost:9092
+      - kafka:9094
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -47,5 +54,9 @@ management:
 
 logging:
   level:
-    "[com.codespark.vitals]": INFO
+    "[com.codespark.auth]": INFO
     "[org.apache.kafka]": ERROR
+
+# List of topics/events for messaging
+events:
+  topics: profile.update, account.delete

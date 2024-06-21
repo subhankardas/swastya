@@ -10,7 +10,7 @@ spring:
   # Service discovery configs
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         instance-id: ${spring.application.name}-${server.port}

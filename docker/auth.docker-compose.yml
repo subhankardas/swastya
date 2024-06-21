@@ -1,7 +1,22 @@
 version: "3.7"
 
 services:
-  # Auth service database
+  # Auth service
+  auth-service:
+    build:
+      context: ../auth-service
+    container_name: auth-service
+    image: auth-service
+    ports:
+      - "9000:9000"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - app_network
+    depends_on:
+      - auth_db
+
+  # Auth database
   auth_db:
     image: postgres
     container_name: auth_db

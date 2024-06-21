@@ -110,6 +110,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>vitals-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

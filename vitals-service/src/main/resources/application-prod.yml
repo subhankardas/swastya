@@ -10,7 +10,7 @@ spring:
   # Service discovery configs
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         instance-id: ${spring.application.name}-${server.port}
@@ -23,12 +23,12 @@ spring:
   # Database configs
   data:
     mongodb:
-      uri: mongodb://swastya:vitalsdbpassword@localhost:27017/vitals_db?authSource=admin
+      uri: mongodb://swastya:vitalsdbpassword@vitals_db:27017/vitals_db?authSource=admin
 
   # Kafka configs
   kafka:
     bootstrap-servers:
-      - localhost:9092
+      - kafka:9094
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -47,5 +47,5 @@ management:
 
 logging:
   level:
-    "[com.codespark.vitals]": INFO
+    "[com.codespark.auth]": INFO
     "[org.apache.kafka]": ERROR

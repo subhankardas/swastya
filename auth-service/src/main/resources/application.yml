@@ -13,7 +13,7 @@ spring:
       host: localhost
       port: 8500
       discovery:
-        instance-id: ${spring.application.name}-${server.port}-${spring.cloud.client.ip-address}
+        instance-id: ${spring.application.name}-${server.port}
         prefer-ip-address: true
         health-check-path: ${server.servlet.context-path:}/actuator/health
         health-check-interval: 15s
@@ -22,7 +22,7 @@ spring:
 
   # Database configs
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/auth_db
+    url: r2dbc:pool:postgresql://localhost:5432/auth_db
     username: swastya
     password: authdbpassword
 

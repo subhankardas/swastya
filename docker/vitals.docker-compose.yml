@@ -1,7 +1,22 @@
 version: "3.7"
 
 services:
-  # Vitals service database
+  # Vitals service
+  vitals-service:
+    build:
+      context: ../vitals-service
+    container_name: vitals-service
+    image: vitals-service
+    ports:
+      - "9001:9001"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - app_network
+    depends_on:
+      - vitals_db
+
+  # Vitals database
   vitals_db:
     image: mongo
     container_name: vitals_db
