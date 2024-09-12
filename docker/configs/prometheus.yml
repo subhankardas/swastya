@@ -1,0 +1,36 @@
+global:
+  scrape_interval: 15s # Scrape every 15 seconds
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Job for prometheus
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Job for vitals service metrics
+  - job_name: "vitals-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["host.docker.internal:9001"]
+    relabel_configs:
+      - target_label: application
+        replacement: "vitals-service"
+
+  # Job for auth service metrics
+  - job_name: "auth-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["host.docker.internal:9000"]
+    relabel_configs:
+      - target_label: application
+        replacement: "auth-service"
+
+  # Job for gateway service metrics
+  - job_name: "gateway-service"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["host.docker.internal:8080"]
+    relabel_configs:
+      - target_label: application
+        replacement: "gateway-service"

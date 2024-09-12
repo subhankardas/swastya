@@ -50,7 +50,7 @@ services:
     networks:
       - app_network
 
-  # Kafka UI
+  # UI for Kafka
   kafka-ui:
     image: provectuslabs/kafka-ui
     container_name: kafka-ui
@@ -65,9 +65,35 @@ services:
     networks:
       - app_network
 
+  # Metrics collection
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - app_network
+    command: ["--config.file=/etc/prometheus/prometheus.yml"]
+
+  # Metrics visualization
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - app_network
+
 volumes:
   consul_data: null
   kafka_data: null
+  prometheus_data: null
+  grafana_data: null
 
 networks:
   app_network:
